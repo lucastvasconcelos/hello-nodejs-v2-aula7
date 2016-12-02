@@ -23,16 +23,34 @@ angular.module("anguhello").controller("participantecontroller",function(partici
 
     this.listar_participantes = () => participanteservice.buscaparticipantes().then((ret) => {
         this.participantes = ret.data;
-        console.log(ret.data)
     });
 
     this.listar_participantes();
 
     this.salvaparticipante = () => {
+        this.novo.nomeparticipante = this.novo.nomeparticipante.toUpperCase();
         participanteservice.salvaparticipante(this.novo).then((ret) => {
             alert("participante salvo com o id "+ret.data.idparticipante);
             this.listar_participantes();
             this.novo= {};
         });
     }
+});
+
+angular.module("anguhello").config(($routeProvider) => {
+
+  $routeProvider.when("/eventos", {
+    controller:"eventocontroller",
+    templateUrl:"eventos.html",
+    controllerAs:"ctl"
+  });
+
+  $routeProvider.when("/participantes", {
+    controller:"participantecontroller",
+    templateUrl:"participantes.html",
+    controllerAs:"controller_participantes"
+  });
+
+  $routeProvider.otherwise("/eventos");
+
 });
