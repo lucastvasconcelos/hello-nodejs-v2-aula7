@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- index.html -->
+<html ng-app="anguhello">
+  <head>
+    <title>Hello Angular!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  </head>
+  <body ng-controller="participantecontroller as ctl">
+    <h1>Participantes</h1>
+    <form ng-submit="ctl.salvaparticipante()">
+      <fieldset>
+        <legend>Novo participante</legend>
+        <label>Nome</label>
+        <input type="string" ng-model="ctl.novo.nomeparticipante" required/>
+        <br/>
+        <input type="submit"/>
+      </fieldset>
+    </form>
+    <ul>
+      <li ng-repeat=" ev in ctl.participantes">Id:  {{ev.idparticipante}} || Nome:  {{ev.nomeparticipante}}  </li>
+    </ul>
+    <script type="text/javascript" src="modulo.js"></script>
+    <script type="text/javascript" src="controllers.js"></script>
+    <script type="text/javascript" src="servicos.js"></script>
+  </body>
+</html>
